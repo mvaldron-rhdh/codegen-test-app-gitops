@@ -1,0 +1,19 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata: 
+  labels: 
+    app.kubernetes.io/instance: codegen-test-app
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: codegen-test-app 
+  name: codegen-test-app
+spec:
+  port:
+    targetPort: 8501
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: codegen-test-app 
+    weight: 100 
+  wildcardPolicy: None
